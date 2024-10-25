@@ -11,7 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="249dp"
         android:layout_height="229dp"
-        app:srcCompat="@drawable/logo_appli"
+        app:srcCompat="@drawable/logo_splash"
         tools:layout_editor_absoluteX="81dp"
         tools:layout_editor_absoluteY="235dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
