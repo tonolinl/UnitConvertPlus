@@ -3,4 +3,5 @@
     <string name="app_name">Hello World</string>
     <string name="edit_message">Saisissez un message</string>
     <string name="button_send">Envoyer</string>
+    <string name="logo_content_description">Logo de l application</string>
 </resources>
