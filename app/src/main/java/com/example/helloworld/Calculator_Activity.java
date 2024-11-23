@@ -1,48 +1,78 @@
 package com.example.helloworld;
 
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class Calculator_Activity extends AppCompatActivity {
 
-    private TextView tvDisplay;
+    private TextView tvSolution, tvResult;
     private String currentExpression = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Charger automatiquement le bon fichier XML selon l'orientation
         setContentView(R.layout.activity_calculator);
 
-        // Initialiser les composants
-        tvDisplay = findViewById(R.id.tv_display);
-        setButtonListeners();
+        // Initialisation des TextView
+        tvSolution = findViewById(R.id.solution_tv);
+        tvResult = findViewById(R.id.result_tv);
+
+        // Configuration des boutons
+        setupButtonListeners();
         handleOrientationButtons();
     }
 
     /**
-     * Associe les boutons de la calculatrice à leurs actions.
+     * Méthode appelée lorsque la configuration change (orientation, etc.)
      */
-    private void setButtonListeners() {
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        // Charger le layout (les deux orientations utilisent activity_calculator mais peuvent différer selon layout-land)
+        setContentView(R.layout.activity_calculator);
+
+        // Réinitialiser les références aux vues et listeners
+        tvSolution = findViewById(R.id.solution_tv);
+        tvResult = findViewById(R.id.result_tv);
+
+        // Vérifie si les vues ont bien été initialisées avant d'ajouter des listeners
+        if (tvSolution == null || tvResult == null) {
+            throw new RuntimeException("Les vues ne sont pas correctement initialisées dans activity_calculator.xml");
+        }
+
+        // Configure les boutons
+        setupButtonListeners();
+        handleOrientationButtons();
+    }
+
+
+    /**
+     * Configure les listeners pour tous les boutons.
+     */
+    private void setupButtonListeners() {
         int[] buttonIds = {
-                R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3,
-                R.id.btn_4, R.id.btn_5, R.id.btn_6, R.id.btn_7,
-                R.id.btn_8, R.id.btn_9, R.id.btn_add, R.id.btn_subtract,
-                R.id.btn_multiply, R.id.btn_divide, R.id.btn_clear,
-                R.id.btn_dot, R.id.btn_equals, R.id.btn_backspace,
-                R.id.btn_open_parenthesis, R.id.btn_close_parenthesis
+                R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4,
+                R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9,
+                R.id.btn_add, R.id.btn_subtract, R.id.btn_multiply, R.id.btn_divide,
+                R.id.btn_dot, R.id.btn_open_parenthesis, R.id.btn_close_parenthesis,
+                R.id.btn_clear, R.id.btn_equals, R.id.btn_backspace
         };
 
+        // Vérifie chaque bouton
         for (int id : buttonIds) {
             Button button = findViewById(id);
-            if (button != null) {
-                button.setOnClickListener(this::onButtonClicked);
+            if (button == null) {
+                // Lance une exception ou log si un bouton manque
+                throw new RuntimeException("Bouton manquant ou non initialisé dans le layout avec l'ID : " + getResources().getResourceName(id));
             }
+            button.setOnClickListener(this::onButtonClicked);
         }
     }
 
@@ -68,9 +98,9 @@ public class Calculator_Activity extends AppCompatActivity {
      */
     private void toggleOrientation() {
         int currentOrientation = getResources().getConfiguration().orientation;
-        if (currentOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+        if (currentOrientation == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
+        } else if (currentOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
@@ -85,13 +115,14 @@ public class Calculator_Activity extends AppCompatActivity {
         switch (buttonText) {
             case "C":
                 currentExpression = "";
-                tvDisplay.setText("0");
+                tvSolution.setText("0");
+                tvResult.setText("0");
                 break;
 
             case "⌫":
                 if (!currentExpression.isEmpty()) {
                     currentExpression = currentExpression.substring(0, currentExpression.length() - 1);
-                    tvDisplay.setText(currentExpression.isEmpty() ? "0" : currentExpression);
+                    tvSolution.setText(currentExpression.isEmpty() ? "0" : currentExpression);
                 }
                 break;
 
@@ -99,24 +130,18 @@ public class Calculator_Activity extends AppCompatActivity {
                 if (!currentExpression.isEmpty()) {
                     try {
                         double result = evaluateExpression(currentExpression);
-                        tvDisplay.setText(String.valueOf(result));
+                        tvResult.setText(String.valueOf(result));
                         currentExpression = String.valueOf(result);
                     } catch (Exception e) {
-                        tvDisplay.setText("Erreur");
+                        tvResult.setText("Erreur");
                         currentExpression = "";
                     }
                 }
                 break;
 
-            case "(":
-            case ")":
+            default: // Nombres, parenthèses et opérateurs
                 currentExpression += buttonText;
-                tvDisplay.setText(currentExpression);
-                break;
-
-            default: // Nombres et opérateurs
-                currentExpression += buttonText;
-                tvDisplay.setText(currentExpression);
+                tvSolution.setText(currentExpression);
         }
     }
 
