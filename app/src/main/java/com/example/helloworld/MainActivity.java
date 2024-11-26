@@ -1,4 +1,6 @@
 package com.example.helloworld;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         // Création de l'adaptateur
         adapter = new CategoryAdapter(this, categories);
         recyclerView.setAdapter(adapter);
+
     }
 }
 
