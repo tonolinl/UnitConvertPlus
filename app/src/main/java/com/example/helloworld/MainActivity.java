@@ -2,6 +2,9 @@ package com.example.helloworld;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
         // Création de l'adaptateur
         adapter = new CategoryAdapter(this, categories);
         recyclerView.setAdapter(adapter);
+
+        Button buttonToCalculator = findViewById(R.id.buttonToCalculator);
+        buttonToCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Créer une intention pour naviguer vers la deuxième activité
+                Intent intent = new Intent(MainActivity.this, Calculator_Activity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
