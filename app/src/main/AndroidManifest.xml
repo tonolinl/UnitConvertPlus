@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnitConvertPlus">
 
-        <activity android:name=".ConversionListActivity" />
+        <activity android:name=".ConversionActivity" />
 
         <activity android:name=".Calculator_Activity" />
 

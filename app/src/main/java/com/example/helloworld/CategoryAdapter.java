@@ -35,17 +35,21 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.textView.setText(category);
 
         // Si c'est Température, Poids ou Volume, affecter une image
-        if (category.equals("Température")) {
-            holder.imageButton.setImageResource(R.drawable.temp);  // Ajoute une image spécifique
-        } else if (category.equals("Poids")) {
-            holder.imageButton.setImageResource(R.drawable.poids);
-        } else if (category.equals("Volume")) {
-            holder.imageButton.setImageResource(R.drawable.vol);
+        switch (category) {
+            case "Température":
+                holder.imageButton.setImageResource(R.drawable.temp);  // Ajoute une image spécifique
+                break;
+            case "Poids":
+                holder.imageButton.setImageResource(R.drawable.poids);
+                break;
+            case "Volume":
+                holder.imageButton.setImageResource(R.drawable.vol);
+                break;
         }
 
         // Listener pour la navigation
         holder.imageButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ConversionListActivity.class);
+            Intent intent = new Intent(context, ConversionActivity.class);
             intent.putExtra("category", category);  // Passe la catégorie à la nouvelle activité
             context.startActivity(intent);
         });
@@ -66,6 +70,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             textView = itemView.findViewById(R.id.textView);
         }
     }
+
 }
 
 
