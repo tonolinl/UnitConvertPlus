@@ -8,9 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HelloWorld">
+        android:theme="@style/Theme.UnitConvertPlus">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ConversionListActivity" />
+
+        <activity android:name=".Calculator_Activity" />
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
