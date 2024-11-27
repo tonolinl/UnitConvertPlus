@@ -11,8 +11,7 @@
     <color name="rose_white">#8c0375</color>
     <color name="rose_black">#640354</color>
     <color name="custom_gray">#CCCCCC</color>
-
-
-
-
+    <color name="light_grey">#F0F0F0F0</color>
+    <color name="dark_grey">#42424242</color>
+    <color name="red">#F01919</color>
 </resources>

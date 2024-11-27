@@ -12,7 +12,10 @@
 
         <activity android:name=".ConversionActivity" />
 
-        <activity android:name=".Calculator_Activity" />
+        <activity android:name=".Calculator_Activity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="unspecified"/>
 
         <activity android:name=".MainActivity"
             android:exported="true">
@@ -21,7 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

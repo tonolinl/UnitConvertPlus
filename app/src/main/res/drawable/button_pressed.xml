@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#DDDDDD"/> <!-- Couleur de fond plus foncée pour l'effet de pression -->
-    <corners android:radius="50dp"/> <!-- Bordures arrondies -->
-    <stroke
-        android:width="2dp"
-        android:color="#BBBBBB"/> <!-- Bordure plus claire lors de la pression -->
+    <corners android:radius="999dp"/> <!-- Bordures arrondies -->
+    <!-- <stroke
+         android:width="2dp"
+         android:color="#BBBBBB"/>  Bordure plus claire lors de la pression -->
 </shape>

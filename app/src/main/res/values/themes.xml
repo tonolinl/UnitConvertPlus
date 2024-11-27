@@ -14,4 +14,32 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name = "BUTTON" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">@color/light_grey</item>
+
+
+    </style>
+
+    <style name = "BUTTON_LAND">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">@color/light_grey</item>
+
+
+    </style>
+
+    <style name = "BUTTON_ICON">
+        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:backgroundTint">@color/white</item>
+
+
+    </style>
+
+    <style name="TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/white</item>
+
+</style>
+
 </resources>
