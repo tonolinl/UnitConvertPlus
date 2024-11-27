@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style android:name="Widget.MaterialComponents.ExtendedFloatingActionButton"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#FFFFFF"/> <!-- Couleur de fond du bouton -->
-    <corners android:radius="35dp"/>  <!-- Bordures arrondies -->
-    <!--<stroke
-        android:width="2dp"
-        android:color="#CCCCCC"/>   Bordure grise -->
-
-</style>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/dark_grey"/> <!-- Couleur de fond quand sélectionné -->
+    <corners android:radius="8dp"/> <!-- Coins arrondis -->
+</shape>

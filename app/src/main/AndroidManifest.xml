@@ -12,7 +12,6 @@
 
         <activity android:name=".Calculator_Activity"
             android:exported="true"
-            android:configChanges="orientation|screenSize"
             android:screenOrientation="unspecified">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
