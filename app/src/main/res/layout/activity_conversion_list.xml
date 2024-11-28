@@ -56,26 +56,31 @@
         android:layout_marginTop="16dp"
         android:onClick="convertValue"/>
 
-    <!-- RadioGroup pour l'unité de base (pour température, poids, volume) -->
-    <RadioGroup
-        android:id="@+id/baseUnitRadioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/convertButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="24dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- RadioGroup pour l'unité cible -->
-    <RadioGroup
-        android:id="@+id/targetUnitRadioGroup"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/baseUnitRadioGroup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"/>
+        android:layout_centerInParent="true">
+
+        <!-- RadioGroup pour l'unité de base (pour température, poids, volume) -->
+        <RadioGroup
+            android:id="@+id/baseUnitRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- RadioGroup pour l'unité cible -->
+        <RadioGroup
+            android:id="@+id/targetUnitRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

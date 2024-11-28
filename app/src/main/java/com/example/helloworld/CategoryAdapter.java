@@ -1,10 +1,10 @@
 package com.example.helloworld;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
 
-    private final List<String> categories;  // Liste des catégories (Température, Poids, etc.)
+    private List<String> categories;
     private final Context context;
 
     public CategoryAdapter(Context context, List<String> categories) {
@@ -34,10 +34,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         holder.textView.setText(category);
 
-        // Si c'est Température, Poids ou Volume, affecter une image
+        // Placeholder pour icônes (si nécessaires)
         switch (category) {
             case "Température":
-                holder.imageButton.setImageResource(R.drawable.temp);  // Ajoute une image spécifique
+                holder.imageButton.setImageResource(R.drawable.temp);
                 break;
             case "Poids":
                 holder.imageButton.setImageResource(R.drawable.poids);
@@ -45,12 +45,27 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             case "Volume":
                 holder.imageButton.setImageResource(R.drawable.vol);
                 break;
+            case "Distance":
+                holder.imageButton.setImageResource(R.drawable.regle);
+                break;
+            case "Data Byte":
+                holder.imageButton.setImageResource(R.drawable.bites);
+                break;
+            case "Vitesse":
+                holder.imageButton.setImageResource(R.drawable.vitesse);
+                break;
+            case "Fréquence":
+                holder.imageButton.setImageResource(R.drawable.frequence);
+                break;
+            case "Pression":
+                holder.imageButton.setImageResource(R.drawable.pression);
+                break;
         }
 
-        // Listener pour la navigation
+        // Navigation vers l'activité de conversion
         holder.imageButton.setOnClickListener(v -> {
             Intent intent = new Intent(context, ConversionActivity.class);
-            intent.putExtra("category", category);  // Passe la catégorie à la nouvelle activité
+            intent.putExtra("category", category);
             context.startActivity(intent);
         });
     }
@@ -58,6 +73,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public int getItemCount() {
         return categories.size();
+    }
+
+    public void updateCategories(List<String> newCategories) {
+        this.categories = newCategories;
+        notifyDataSetChanged();
     }
 
     public static class CategoryViewHolder extends RecyclerView.ViewHolder {
@@ -70,8 +90,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             textView = itemView.findViewById(R.id.textView);
         }
     }
-
 }
-
-
-

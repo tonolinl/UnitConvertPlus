@@ -9,7 +9,7 @@
 
     <!-- Logo centré au milieu -->
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logo_splash"
         android:layout_width="249dp"
         android:layout_height="229dp"
         app:srcCompat="@drawable/logo_splash"
