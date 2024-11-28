@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">UnitConvert+</string>
     <string name="edit_message">Saisissez un message</string>
-    <string name="button_send">Envoyer</string>
+    <string name="button_send">Send</string>
     <string name="convertisseur">Convertisseur</string>
-    <string name="categorie_poids">Categorie poids</string>
+    <string name="categorie_poids">Weight category</string>
     <string name="temperature">Température</string>
-    <string name="poids">Poids</string>
+    <string name="poids">Weight</string>
     <string name="convertunitplus">ConvertUnit+</string>
     <string name="unit">Unit</string>
 </resources>
