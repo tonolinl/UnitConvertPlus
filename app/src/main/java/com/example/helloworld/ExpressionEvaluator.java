@@ -25,6 +25,18 @@ public class ExpressionEvaluator {
                 values.push(Double.parseDouble(buffer.toString()));
             }
 
+            // Si le token est un '-' et qu'il marque un nombre négatif
+            else if (token == '-' && (i == 0 || tokens[i - 1] == '(' || isOperator(tokens[i - 1]))) {
+                StringBuilder buffer = new StringBuilder();
+                buffer.append(token); // Ajouter le signe négatif
+                i++;
+                while (i < tokens.length && (Character.isDigit(tokens[i]) || tokens[i] == '.')) {
+                    buffer.append(tokens[i++]);
+                }
+                i--; // Revenir au dernier caractère valide
+                values.push(Double.parseDouble(buffer.toString()));
+            }
+
             // Si le token est une parenthèse ouvrante
             else if (token == '(') {
                 operators.push(token);
@@ -39,7 +51,7 @@ public class ExpressionEvaluator {
             }
 
             // Si le token est un opérateur
-            else if (token == '+' || token == '-' || token == '×' || token == '/') {
+            else if (isOperator(token)) {
                 while (!operators.isEmpty() && hasPrecedence(token, operators.peek())) {
                     values.push(applyOperator(operators.pop(), values.pop(), values.pop()));
                 }
@@ -72,5 +84,9 @@ public class ExpressionEvaluator {
                 return a / b;
             default: throw new UnsupportedOperationException("Opérateur inconnu : " + operator);
         }
+    }
+
+    private boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '×' || c == '/';
     }
 }

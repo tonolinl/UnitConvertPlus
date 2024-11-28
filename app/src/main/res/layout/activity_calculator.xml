@@ -15,7 +15,7 @@
         android:gravity="end"
         android:textSize="28sp"
         android:layout_above="@+id/result_tv"
-        android:layout_margin="8dp"/>
+        android:layout_margin="4dp"/>
     <TextView
         android:id="@+id/result_tv"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:text="0"
         android:textSize="48sp"
         android:layout_above="@+id/buttons_layout"
-        android:layout_margin="8dp"/>
+        android:layout_margin="4dp"/>
 
     <!-- Grille des boutons -->
     <LinearLayout
@@ -35,7 +35,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,24 +43,32 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_landscape"
-                style="@style/BUTTON_ICON"
+                style="@style/BUTTON"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="⇆"
+                android:textColor="@color/purple_700"
                 android:textSize="24dp"
                 app:cornerRadius="30dp" />
 
+            <View
+                android:layout_width="169dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:layout_columnSpan="1" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_backspace"
-                style="@style/BUTTON_ICON"
+                style="@style/BUTTON"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="⌫"
-                android:textSize="24dp"
+                android:textColor="@color/purple_700"
+                android:textSize="20dp"
                 app:cornerRadius="30dp" />
-        </LinearLayout>
+        </GridLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,7 +81,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="C"
                 android:textColor="@color/red"
                 android:textSize="32dp"
@@ -84,7 +92,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="("
                 android:textColor="?attr/colorPrimary"
                 android:textSize="32dp"
@@ -95,7 +103,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text=")"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="32dp"
@@ -106,7 +114,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="/"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="32dp"
@@ -124,7 +132,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="7"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -134,7 +142,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="8"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -144,7 +152,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="9"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -154,7 +162,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="×"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="32dp"
@@ -172,7 +180,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="4"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -182,7 +190,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="5"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -192,7 +200,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="6"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -202,7 +210,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="-"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="32dp"
@@ -220,7 +228,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="1"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -230,7 +238,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="2"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -240,7 +248,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="3"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
@@ -250,7 +258,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="+"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="32dp"
@@ -267,7 +275,7 @@
             <View
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:layout_columnSpan="1" />
 
 
@@ -276,7 +284,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="0"
                 android:textSize="32dp"
                 app:cornerRadius="35dp"
@@ -287,7 +295,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="."
                 android:textSize="32dp"
                 app:cornerRadius="35dp"
@@ -298,7 +306,7 @@
                 style="@style/BUTTON"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_margin="12dp"
+                android:layout_margin="6dp"
                 android:text="="
                 android:textColor="@color/white"
                 android:backgroundTint="?attr/colorPrimary"

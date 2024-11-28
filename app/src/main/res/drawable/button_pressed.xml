@@ -2,6 +2,6 @@
 <shape android:shape="rectangle"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#F0F0F0F0"/> <!-- Couleur de fond plus foncée pour l'effet de pression -->
-    <corners android:radius="999dp"/> <!-- Bordures arrondies -->
+    <corners android:radius="8dp"/> <!-- Bordures arrondies -->
 
 </shape>
