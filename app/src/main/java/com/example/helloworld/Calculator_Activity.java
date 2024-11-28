@@ -34,6 +34,14 @@ public class Calculator_Activity extends AppCompatActivity {
         setupButtonListeners();
         handleOrientationButtons();
 
+        // Restaurer l'état après rotation, si disponible
+        if (savedInstanceState != null) {
+            currentExpression = savedInstanceState.getString("currentExpression", "");
+            tvSolution.setText(savedInstanceState.getString("solutionText", ""));
+            tvResult.setText(savedInstanceState.getString("resultText", "0"));
+
+        }
+
     }
 
     private void setupButtonListeners() {
@@ -57,10 +65,18 @@ public class Calculator_Activity extends AppCompatActivity {
             // Initialisation des boutons DEG et RAD uniquement en mode paysage
             btnDeg = findViewById(R.id.btn_deg);
             btnRad = findViewById(R.id.btn_rad);
-            if (btnDeg != null && btnRad != null) {
-                // Écouteurs pour le mode degré et radian
-                btnDeg.setOnClickListener(view -> setDegreeMode(true));
-                btnRad.setOnClickListener(view -> setDegreeMode(false));
+            if (btnDeg == null) {
+                Log.e("ERROR", "btnDeg is null! Check if R.id.btn_deg exists in the layout.");
+            } else {
+                Log.d("DEBUG", "btnDeg is initialized.");
+                setDegreeMode(true);
+            }
+
+            if (btnRad == null) {
+                Log.e("ERROR", "btnRad is null! Check if R.id.btn_rad exists in the layout.");
+            } else {
+                Log.d("DEBUG", "btnRad is initialized.");
+                setDegreeMode(false);
             }
 
         }
@@ -88,6 +104,15 @@ public class Calculator_Activity extends AppCompatActivity {
         return result;
     }
 
+    public void onDegClicked(View view) {
+        Log.d("BUTTON_CLICK", "Mode Degré activé");
+        Toast.makeText(this, "Mode Degré activé", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onRadClicked(View view) {
+        Log.d("BUTTON_CLICK", "Mode Radian activé");
+        Toast.makeText(this, "Mode Radian activé", Toast.LENGTH_SHORT).show();
+    }
 
     /**
      * Gère les boutons pour basculer entre les orientations.
@@ -191,136 +216,62 @@ public class Calculator_Activity extends AppCompatActivity {
                 break;
 
             case "√":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.sqrt(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "sin":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double angle = Double.parseDouble(currentExpression);
-                        double result = isDegreeMode ? Math.sin(Math.toRadians(angle)) : Math.sin(angle);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "cos":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double angle = Double.parseDouble(currentExpression);
-                        double result = isDegreeMode ? Math.cos(Math.toRadians(angle)) : Math.cos(angle);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "tan":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double angle = Double.parseDouble(currentExpression);
-                        double result = isDegreeMode ? Math.tan(Math.toRadians(angle)) : Math.tan(angle);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "ln":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.log(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "log":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.log10(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "1/x":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = 1 / Double.parseDouble(currentExpression);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "x²":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.pow(Double.parseDouble(currentExpression), 2);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "|x|":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.abs(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
-                break;
-
-            case "π":
-                currentExpression += Math.PI;
+                currentExpression += "sqrt("; // Ajoute "sqrt(" à l'expression
                 tvSolution.setText(currentExpression);
                 break;
 
-            case "e^x": // Calcul de l'exponentielle de x (e^x)
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double x = Double.parseDouble(currentExpression);
-                        double result = Math.exp(x); // Calcul de e^x
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+            case "sin":
+                currentExpression += "sin("; // Ajoute "sin(" à l'expression
+                tvSolution.setText(currentExpression);
                 break;
 
-            case "e": // Affiche simplement e (la constante d'Euler)
-                currentExpression += Math.E; // Ajout de la constante e (environ 2.71828...)
+            case "cos":
+                currentExpression += "cos("; // Ajoute "cos(" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "tan":
+                currentExpression += "tan("; // Ajoute "tan(" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "ln":
+                currentExpression += "ln("; // Ajoute "ln(" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "log":
+                currentExpression += "log("; // Ajoute "log(" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "1/x":
+                currentExpression += "1/"; // Ajoute "1/" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "x²":
+                currentExpression += "^2"; // Ajoute "^2" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "|x|":
+                currentExpression += "abs("; // Ajoute "abs(" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "π":
+                currentExpression += "π"; // Ajoute "π" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "e":
+                currentExpression += "e"; // Ajoute "e" à l'expression
+                tvSolution.setText(currentExpression);
+                break;
+
+            case "^": // Pour l'opérateur x^y
+                currentExpression += "^"; // Ajoute l'opérateur de puissance
                 tvSolution.setText(currentExpression);
                 break;
 
@@ -329,10 +280,19 @@ public class Calculator_Activity extends AppCompatActivity {
                     if (buttonText.equals(".")) {
                         // Si c'est un deuxième point décimal dans le même nombre
                         Toast.makeText(this, "Vous ne pouvez pas saisir deux virgules à la suite", Toast.LENGTH_SHORT).show();
-                    } else {
-                        // Si c'est un dépassement de la limite des 10 chiffres après la virgule
-                        Toast.makeText(this, "Vous ne pouvez pas dépasser 10 chiffres après la virgule", Toast.LENGTH_SHORT).show();
                     }
+                    return;
+                }
+
+                // Si l'utilisateur essaie de commencer par un opérateur
+                if (isOperator(buttonText) && currentExpression.isEmpty()) {
+                    Toast.makeText(this, "Format invalide détecté", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Si l'utilisateur essaie d'ajouter un opérateur après un autre opérateur
+                if (!currentExpression.isEmpty() && isOperator(buttonText) && isOperator(currentExpression.charAt(currentExpression.length() - 1) + "")) {
+                    Toast.makeText(this, "Deux opérateurs consécutifs ne sont pas autorisés", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -341,16 +301,9 @@ public class Calculator_Activity extends AppCompatActivity {
                 break;
         }
     }
-    private boolean isExceedingDecimalLimit(String buttonText) {
-        // Si le bouton n'est pas un chiffre ou un point, on ne vérifie pas la limite
-        if (!buttonText.matches("[0-9.]")) {
-            return false;
-        }
 
-        // Si le bouton est un opérateur, on réinitialise la limite pour le prochain nombre
-        if (buttonText.matches("[+\\-×/]")) {
-            return false;  // Les opérateurs ne sont pas limités par la virgule
-        }
+    private boolean isExceedingDecimalLimit(String buttonText) {
+
 
         // Diviser l'expression en nombres basés sur les opérateurs mathématiques
         String[] numbers = currentExpression.split("[+\\-×/]");
@@ -364,17 +317,26 @@ public class Calculator_Activity extends AppCompatActivity {
             return true; // Deux points dans le même nombre
         }
 
-        // Si le dernier nombre contient un point, vérifier le nombre de chiffres après
-        if (lastNumber.contains(".")) {
-            String[] parts = lastNumber.split("\\.");
-            if (parts.length > 1 && parts[1].length() >= 10 && buttonText.matches("[0-9]")) {
-                return true; // Trop de chiffres après la virgule
-            }
-        }
-
         return false;
     }
 
+    private boolean isOperator(String text) {
+        return text.equals("+") || text.equals("-") || text.equals("×") || text.equals("/") || text.equals("x²")|| text.equals("xʸ") ;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        // Sauvegarder l'expression actuelle
+        outState.putString("currentExpression", currentExpression);
+
+        // Sauvegarder le texte des TextViews (solution et résultat)
+        outState.putString("solutionText", tvSolution.getText().toString());
+        outState.putString("resultText", tvResult.getText().toString());
+
+
+    }
 
 
     /**

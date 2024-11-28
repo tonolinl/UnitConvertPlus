@@ -117,7 +117,8 @@
                 android:text="deg"
                 android:textSize="16dp"
                 android:textAllCaps="false"
-                app:cornerRadius="18dp" />
+                app:cornerRadius="18dp"
+                android:onClick="onDegClicked"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_rad"
@@ -130,7 +131,8 @@
                 android:text="rad"
                 android:textSize="16dp"
                 android:textAllCaps="false"
-                app:cornerRadius="18dp" />
+                app:cornerRadius="18dp"
+                android:onClick="onRadClicked"/>
 
 
             <com.google.android.material.button.MaterialButton
