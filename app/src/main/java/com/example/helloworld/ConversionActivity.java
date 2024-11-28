@@ -132,15 +132,15 @@ public class ConversionActivity extends AppCompatActivity {
 
     // Unités pour la vitesse
     private void setupSpeedUnits() {
-        addRadioButton(baseUnitRadioGroup, "m/s");
-        addRadioButton(baseUnitRadioGroup, "km/h");
-        addRadioButton(baseUnitRadioGroup, "mi/h");
-        addRadioButton(baseUnitRadioGroup, "nœuds");
+        addRadioButton(baseUnitRadioGroup, "Mètre/seconde");
+        addRadioButton(baseUnitRadioGroup, "Kilomètre/heure");
+        addRadioButton(baseUnitRadioGroup, "Mile/heure");
+        addRadioButton(baseUnitRadioGroup, "Noeuds");
 
-        addRadioButton(targetUnitRadioGroup, "m/s");
-        addRadioButton(targetUnitRadioGroup, "km/h");
-        addRadioButton(targetUnitRadioGroup, "mi/h");
-        addRadioButton(targetUnitRadioGroup, "nœuds");
+        addRadioButton(targetUnitRadioGroup, "Mètre/seconde");
+        addRadioButton(targetUnitRadioGroup, "Kilomètre/heure");
+        addRadioButton(targetUnitRadioGroup, "Mile/heure");
+        addRadioButton(targetUnitRadioGroup, "Noeuds");
     }
 
     // Unités pour la fréquence

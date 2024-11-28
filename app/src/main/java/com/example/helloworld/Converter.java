@@ -182,7 +182,7 @@ public class Converter {
                 if (toUnit.equals("Mile/heure")) return value * 2.23694;
                 if (toUnit.equals("Noeud")) return value * 1.94384;
                 break;
-            case "Noeud":
+            case "Noeuds":
                 if (toUnit.equals("Kilomètre/heure")) return value * 1.852;
                 if (toUnit.equals("Mile/heure")) return value * 1.15078;
                 if (toUnit.equals("Mètre/seconde")) return value / 1.94384;

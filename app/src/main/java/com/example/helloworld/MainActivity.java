@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         categoryUnitMap.put("Volume", Arrays.asList("Litre", "Centilitre", "Millilitre", "Gallon", "Pinte"));
         categoryUnitMap.put("Distance", Arrays.asList("Mètre", "Kilomètre", "Mile", "Pied", "Pouce"));
         categoryUnitMap.put("Data Byte", Arrays.asList("Octet", "Kilooctet", "Megaoctet", "Gigaoctet", "Teraoctet"));
-        categoryUnitMap.put("Vitesse", Arrays.asList("m/s", "km/h", "mi/h", "noeuds"));
+        categoryUnitMap.put("Vitesse", Arrays.asList("Mètre/seconde", "Kilomètre/heure", "Mile/heure", "Noeud"));
         categoryUnitMap.put("Fréquence", Arrays.asList("Hertz", "Kilohertz", "Megahertz", "Gigahertz"));
         categoryUnitMap.put("Pression", Arrays.asList("Pascal", "Bar", "PSI", "Atmosphère"));
 
