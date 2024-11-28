@@ -216,62 +216,136 @@ public class Calculator_Activity extends AppCompatActivity {
                 break;
 
             case "√":
-                currentExpression += "sqrt("; // Ajoute "sqrt(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double result = Math.sqrt(Double.parseDouble(currentExpression));
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "sin":
-                currentExpression += "sin("; // Ajoute "sin(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double angle = Double.parseDouble(currentExpression);
+                        double result = isDegreeMode ? Math.sin(Math.toRadians(angle)) : Math.sin(angle);
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "cos":
-                currentExpression += "cos("; // Ajoute "cos(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double angle = Double.parseDouble(currentExpression);
+                        double result = isDegreeMode ? Math.cos(Math.toRadians(angle)) : Math.cos(angle);
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "tan":
-                currentExpression += "tan("; // Ajoute "tan(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double angle = Double.parseDouble(currentExpression);
+                        double result = isDegreeMode ? Math.tan(Math.toRadians(angle)) : Math.tan(angle);
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "ln":
-                currentExpression += "ln("; // Ajoute "ln(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double result = Math.log(Double.parseDouble(currentExpression));
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "log":
-                currentExpression += "log("; // Ajoute "log(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double result = Math.log10(Double.parseDouble(currentExpression));
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "1/x":
-                currentExpression += "1/"; // Ajoute "1/" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double result = 1 / Double.parseDouble(currentExpression);
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "x²":
-                currentExpression += "^2"; // Ajoute "^2" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double result = Math.pow(Double.parseDouble(currentExpression), 2);
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "|x|":
-                currentExpression += "abs("; // Ajoute "abs(" à l'expression
-                tvSolution.setText(currentExpression);
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double result = Math.abs(Double.parseDouble(currentExpression));
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
             case "π":
-                currentExpression += "π"; // Ajoute "π" à l'expression
+                currentExpression += Math.PI;
                 tvSolution.setText(currentExpression);
                 break;
 
-            case "e":
-                currentExpression += "e"; // Ajoute "e" à l'expression
-                tvSolution.setText(currentExpression);
+            case "e^x": // Calcul de l'exponentielle de x (e^x)
+                if (!currentExpression.isEmpty()) {
+                    try {
+                        double x = Double.parseDouble(currentExpression);
+                        double result = Math.exp(x); // Calcul de e^x
+                        tvResult.setText(String.valueOf(result));
+                        currentExpression = String.valueOf(result);
+                    } catch (Exception e) {
+                        tvResult.setText("Erreur");
+                    }
+                }
                 break;
 
-            case "^": // Pour l'opérateur x^y
-                currentExpression += "^"; // Ajoute l'opérateur de puissance
+            case "e": // Affiche simplement e (la constante d'Euler)
+                currentExpression += Math.E; // Ajout de la constante e (environ 2.71828...)
                 tvSolution.setText(currentExpression);
                 break;
 
@@ -301,7 +375,6 @@ public class Calculator_Activity extends AppCompatActivity {
                 break;
         }
     }
-
     private boolean isExceedingDecimalLimit(String buttonText) {
 
 
