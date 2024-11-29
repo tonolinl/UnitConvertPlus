@@ -97,7 +97,7 @@ public class ConversionActivity extends AppCompatActivity {
         addRadioButton(targetUnitRadioGroup, "Tonnes");
         addRadioButton(targetUnitRadioGroup, "Livres");
         addRadioButton(targetUnitRadioGroup, "Onces");
-        addRadioButton(baseUnitRadioGroup, "Stone");
+        addRadioButton(targetUnitRadioGroup, "Stone");
     }
 
     private void setupVolumeUnits() {
@@ -110,9 +110,9 @@ public class ConversionActivity extends AppCompatActivity {
 
         addRadioButton(targetUnitRadioGroup, "Litre");
         addRadioButton(targetUnitRadioGroup, "Centilitre");
-        addRadioButton(baseUnitRadioGroup, "Millilitre");
-        addRadioButton(baseUnitRadioGroup, "Gallon");
-        addRadioButton(baseUnitRadioGroup, "Pinte");
+        addRadioButton(targetUnitRadioGroup, "Millilitre");
+        addRadioButton(targetUnitRadioGroup, "Gallon");
+        addRadioButton(targetUnitRadioGroup, "Pinte");
     }
 
     // Unités pour la distance
