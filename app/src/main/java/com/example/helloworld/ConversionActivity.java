@@ -81,7 +81,7 @@ public class ConversionActivity extends AppCompatActivity {
         addRadioButton(targetUnitRadioGroup, "Celsius");
         addRadioButton(targetUnitRadioGroup, "Fahrenheit");
         addRadioButton(targetUnitRadioGroup, "Kelvin");
-        addRadioButton(baseUnitRadioGroup, "Rankine");
+        addRadioButton(targetUnitRadioGroup, "Rankine");
     }
 
     private void setupWeightUnits() {
