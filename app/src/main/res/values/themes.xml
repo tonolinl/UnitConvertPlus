@@ -29,7 +29,7 @@
     </style>
 
     <style name = "BUTTON_ICON">
-        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:textColor">@color/app</item>
         <item name="android:backgroundTint">@color/white</item>
 
 
@@ -37,7 +37,7 @@
 
     <style name = "BUTTON_SELECTED">
         <item name="android:textColor">@color/white</item>
-        <item name="android:backgroundTint">@color/purple_700</item>
+        <item name="android:backgroundTint">@color/app</item>
 
 
     </style>

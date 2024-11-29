@@ -152,7 +152,7 @@ public class Calculator_Activity extends AppCompatActivity {
             btnRad.setSelected(false);
 
             // Appliquer le style violet pour DEG
-            ViewCompat.setBackgroundTintList(btnDeg, ContextCompat.getColorStateList(this, R.color.purple_700));
+            ViewCompat.setBackgroundTintList(btnDeg, ContextCompat.getColorStateList(this, R.color.app));
             btnDeg.setTextColor(ContextCompat.getColor(this, R.color.white));
 
             // Restaurer le style par défaut pour RAD
@@ -164,7 +164,7 @@ public class Calculator_Activity extends AppCompatActivity {
             btnDeg.setSelected(false);
 
             // Appliquer le style violet pour RAD
-            ViewCompat.setBackgroundTintList(btnRad, ContextCompat.getColorStateList(this, R.color.purple_700));
+            ViewCompat.setBackgroundTintList(btnRad, ContextCompat.getColorStateList(this, R.color.app));
             btnRad.setTextColor(ContextCompat.getColor(this, R.color.white));
 
             // Restaurer le style par défaut pour DEG
@@ -195,8 +195,15 @@ public class Calculator_Activity extends AppCompatActivity {
                 }
                 break;
 
-            case "=": // Évalue l'expression
+            case "=":
                 if (!currentExpression.isEmpty()) {
+                    // Fermer automatiquement les parenthèses ouvertes
+                    int openParentheses = currentExpression.length() - currentExpression.replace("(", "").length();
+                    int closeParentheses = currentExpression.length() - currentExpression.replace(")", "").length();
+                    for (int i = 0; i < (openParentheses - closeParentheses); i++) {
+                        currentExpression += ")";
+                    }
+
                     try {
                         double result = evaluateExpression(currentExpression);
 
@@ -289,28 +296,31 @@ public class Calculator_Activity extends AppCompatActivity {
                     }
                 }
                 break;
-
             case "1/x":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = 1 / Double.parseDouble(currentExpression);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
+                // Ajouter "1/(" à l'expression actuelle
+                currentExpression += "1/(";
+                tvSolution.setText(currentExpression);
+                break;
+
+
+            case "x²":
+                // Vérifie si l'expression est vide ou se termine par un opérateur
+                if (!currentExpression.isEmpty() && Character.isDigit(currentExpression.charAt(currentExpression.length() - 1))) {
+                    currentExpression = currentExpression + "^(2)";
+                    tvSolution.setText(currentExpression);
+                } else {
+                    Toast.makeText(this, "Format invalide détecté", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
-            case "x²":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.pow(Double.parseDouble(currentExpression), 2);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
+            case "xʸ": // x^y
+                // Vérifie si l'expression est vide ou se termine par un opérateur
+                if (!currentExpression.isEmpty() && Character.isDigit(currentExpression.charAt(currentExpression.length() - 1))) {
+                    // Ajouter "^( à la fin pour permettre à l'utilisateur d'entrer y
+                    currentExpression += "^(";
+                    tvSolution.setText(currentExpression);
+                } else {
+                    Toast.makeText(this, "Format invalide détecté", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
