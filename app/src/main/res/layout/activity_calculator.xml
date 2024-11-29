@@ -48,7 +48,7 @@
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:text="⇆"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="24dp"
                 app:cornerRadius="30dp" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:text="⌫"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="20dp"
                 app:cornerRadius="30dp" />
         </GridLayout>
@@ -94,7 +94,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="6dp"
                 android:text="("
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
 
@@ -105,7 +105,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="6dp"
                 android:text=")"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="6dp"
                 android:text="/"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
         </LinearLayout>
@@ -164,7 +164,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="6dp"
                 android:text="×"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
         </LinearLayout>
@@ -212,7 +212,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="6dp"
                 android:text="-"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
         </LinearLayout>
@@ -260,7 +260,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="6dp"
                 android:text="+"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp" />
         </LinearLayout>
@@ -309,7 +309,7 @@
                 android:layout_margin="6dp"
                 android:text="="
                 android:textColor="@color/white"
-                android:backgroundTint="?attr/colorPrimary"
+                android:backgroundTint="@color/app"
                 android:textSize="32dp"
                 app:cornerRadius="35dp"
                 />

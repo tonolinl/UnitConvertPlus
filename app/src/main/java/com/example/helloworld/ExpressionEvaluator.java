@@ -70,6 +70,10 @@ public class ExpressionEvaluator {
 
     private boolean hasPrecedence(char operator1, char operator2) {
         if (operator2 == '(' || operator2 == ')') return false;
+
+        // Priorité pour les opérateurs
+        if (operator1 == '^' && (operator2 == '×' || operator2 == '/' || operator2 == '+' || operator2 == '-')) return false;
+
         if ((operator1 == '×' || operator1 == '/') && (operator2 == '+' || operator2 == '-')) return false;
         return true;
     }
@@ -82,11 +86,12 @@ public class ExpressionEvaluator {
             case '/':
                 if (b == 0) throw new ArithmeticException("Division par zéro");
                 return a / b;
+            case '^': return Math.pow(a, b); // Logique pour l'exponentiation
             default: throw new UnsupportedOperationException("Opérateur inconnu : " + operator);
         }
     }
 
     private boolean isOperator(char c) {
-        return c == '+' || c == '-' || c == '×' || c == '/';
+        return c == '+' || c == '-' || c == '×' || c == '/' || c == '^';
     }
 }
