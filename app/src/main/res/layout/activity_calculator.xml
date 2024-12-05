@@ -42,6 +42,18 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShowHistory"
+                style="@style/BUTTON"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="6dp"
+                android:text="🕙"
+                android:textColor="@color/app"
+                android:textSize="17dp"
+                app:cornerRadius="30dp"
+                android:onClick="showHistoryDialog" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_landscape"
                 style="@style/BUTTON"
                 android:layout_width="60dp"
@@ -49,11 +61,11 @@
                 android:layout_margin="6dp"
                 android:text="⇆"
                 android:textColor="@color/app"
-                android:textSize="24dp"
+                android:textSize="17dp"
                 app:cornerRadius="30dp" />
 
             <View
-                android:layout_width="169dp"
+                android:layout_width="97dp"
                 android:layout_height="60dp"
                 android:layout_margin="6dp"
                 android:layout_columnSpan="1" />
@@ -66,7 +78,7 @@
                 android:layout_margin="6dp"
                 android:text="⌫"
                 android:textColor="@color/app"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 app:cornerRadius="30dp" />
         </GridLayout>
 

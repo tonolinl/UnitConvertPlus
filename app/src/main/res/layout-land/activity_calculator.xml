@@ -50,6 +50,20 @@
             android:layout_marginBottom="0dp">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShowHistory"
+                style="@style/BUTTON_LAND"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:text="🕙"
+                android:textColor="@color/app"
+                android:textSize="12dp"
+                app:cornerRadius="12dp"
+                android:onClick="showHistoryDialog" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_portrait"
                 style="@style/BUTTON_LAND"
                 android:layout_width="60dp"
@@ -57,13 +71,12 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
                 android:text="⇆"
                 android:textColor="@color/app"
                 android:textSize="12dp"
                 app:cornerRadius="12dp" />
             <View
-                android:layout_width="489dp"
+                android:layout_width="399dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"

@@ -57,7 +57,7 @@ public class Calculator_Activity extends AppCompatActivity {
         // Ajout des boutons supplémentaires uniquement si le layout est en paysage
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             buttonIds = concatenate(buttonIds, new int[]{
-                    R.id.btn_square_root, R.id.btn_cos, R.id.btn_sin, R.id.btn_log,
+                    R.id.btn_square_root, R.id.btn_cos, R.id.btn_sin,R.id.btn_tan, R.id.btn_log,R.id.btn_ln,
                     R.id.btn_1_over_x, R.id.btn_exponent, R.id.btn_x_squared, R.id.btn_x_power_y,
                     R.id.btn_abs, R.id.btn_pi, R.id.btn_exponent_1,R.id.btn_deg, R.id.btn_rad
             });
@@ -152,7 +152,7 @@ public class Calculator_Activity extends AppCompatActivity {
             btnRad.setSelected(false);
 
             // Appliquer le style violet pour DEG
-            ViewCompat.setBackgroundTintList(btnDeg, ContextCompat.getColorStateList(this, R.color.app));
+            ViewCompat.setBackgroundTintList(btnDeg, ContextCompat.getColorStateList(this, R.color.dark_grey));
             btnDeg.setTextColor(ContextCompat.getColor(this, R.color.white));
 
             // Restaurer le style par défaut pour RAD
@@ -164,7 +164,7 @@ public class Calculator_Activity extends AppCompatActivity {
             btnDeg.setSelected(false);
 
             // Appliquer le style violet pour RAD
-            ViewCompat.setBackgroundTintList(btnRad, ContextCompat.getColorStateList(this, R.color.app));
+            ViewCompat.setBackgroundTintList(btnRad, ContextCompat.getColorStateList(this, R.color.dark_grey));
             btnRad.setTextColor(ContextCompat.getColor(this, R.color.white));
 
             // Restaurer le style par défaut pour DEG
@@ -205,6 +205,8 @@ public class Calculator_Activity extends AppCompatActivity {
                     }
 
                     try {
+
+
                         double result = evaluateExpression(currentExpression);
 
                         // Vérifie si le résultat est un entier
@@ -215,6 +217,7 @@ public class Calculator_Activity extends AppCompatActivity {
                         }
 
                         currentExpression = String.valueOf(result);
+
                     } catch (Exception e) {
                         tvResult.setText("Erreur");
                         currentExpression = "";
@@ -223,79 +226,41 @@ public class Calculator_Activity extends AppCompatActivity {
                 break;
 
             case "√":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.sqrt(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "√(" à l'expression actuelle
+                currentExpression += "√(";
+                tvSolution.setText(currentExpression);
                 break;
 
             case "sin":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double angle = Double.parseDouble(currentExpression);
-                        double result = isDegreeMode ? Math.sin(Math.toRadians(angle)) : Math.sin(angle);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "sin(" à l'expression actuelle
+                currentExpression += "sin(";
+                tvSolution.setText(currentExpression);
                 break;
 
             case "cos":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double angle = Double.parseDouble(currentExpression);
-                        double result = isDegreeMode ? Math.cos(Math.toRadians(angle)) : Math.cos(angle);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "cos(" à l'expression actuelle
+                currentExpression += "cos(";
+                tvSolution.setText(currentExpression);
                 break;
 
             case "tan":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double angle = Double.parseDouble(currentExpression);
-                        double result = isDegreeMode ? Math.tan(Math.toRadians(angle)) : Math.tan(angle);
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "tan(" à l'expression actuelle
+                currentExpression += "tan(";
+                tvSolution.setText(currentExpression);
                 break;
 
             case "ln":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.log(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "ln(" à l'expression actuelle
+                currentExpression += "ln(";
+                tvSolution.setText(currentExpression);
                 break;
 
             case "log":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.log10(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "log(" à l'expression actuelle
+                currentExpression += "log(";
+                tvSolution.setText(currentExpression);
                 break;
+
             case "1/x":
                 // Ajouter "1/(" à l'expression actuelle
                 currentExpression += "1/(";
@@ -325,15 +290,9 @@ public class Calculator_Activity extends AppCompatActivity {
                 break;
 
             case "|x|":
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double result = Math.abs(Double.parseDouble(currentExpression));
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+                // Ajouter "abs(" à l'expression actuelle
+                currentExpression += "abs(";
+                tvSolution.setText(currentExpression);
                 break;
 
             case "π":
@@ -341,18 +300,11 @@ public class Calculator_Activity extends AppCompatActivity {
                 tvSolution.setText(currentExpression);
                 break;
 
-            case "e^x": // Calcul de l'exponentielle de x (e^x)
-                if (!currentExpression.isEmpty()) {
-                    try {
-                        double x = Double.parseDouble(currentExpression);
-                        double result = Math.exp(x); // Calcul de e^x
-                        tvResult.setText(String.valueOf(result));
-                        currentExpression = String.valueOf(result);
-                    } catch (Exception e) {
-                        tvResult.setText("Erreur");
-                    }
-                }
+            case "eˣ":
+                currentExpression += "e^("; // Ajoute "e^(" à l'expression
+                tvSolution.setText(currentExpression); // Met à jour l'affichage
                 break;
+
 
             case "e": // Affiche simplement e (la constante d'Euler)
                 currentExpression += Math.E; // Ajout de la constante e (environ 2.71828...)

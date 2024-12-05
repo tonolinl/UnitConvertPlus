@@ -1,8 +1,11 @@
 package com.example.helloworld;
 
+
 import java.util.Stack;
 
 public class ExpressionEvaluator {
+
+    private static final double TOLERANCE = 1e-15;
 
     public double evaluate(String expression) {
         Stack<Double> values = new Stack<>();
@@ -15,8 +18,123 @@ public class ExpressionEvaluator {
             // Ignorer les espaces
             if (token == ' ') continue;
 
+            // Si le token est une fonction exponentielle e^(
+            if (token == 'e' && i + 2 < tokens.length && tokens[i + 1] == '^' && tokens[i + 2] == '(') {
+                int startIndex = i + 3; // Position après "e^("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                values.push(Math.exp(innerValue)); // Calculer e^(innerValue)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction Math.abs(
+            else if (i + 3 < tokens.length && expression.substring(i, i + 4).equals("abs(")) {
+                int startIndex = i + 4; // Position après "abs("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                values.push(Math.abs(innerValue)); // Appliquer Math.abs
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction log(
+            else if (i + 3 < tokens.length && expression.substring(i, i + 4).equals("log(")) {
+                int startIndex = i + 4; // Position après "log("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                values.push(Math.log10(innerValue)); // Appliquer log10 (logarithme en base 10)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction ln(
+            else if (i + 2 < tokens.length && expression.substring(i, i + 3).equals("ln(")) {
+                int startIndex = i + 3; // Position après "ln("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                values.push(Math.log(innerValue)); // Appliquer ln (logarithme népérien)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction √(
+            else if (i + 1 < tokens.length && expression.substring(i, i + 2).equals("√(")) {
+                int startIndex = i + 2; // Position après "√("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                if (innerValue < 0) {
+                    throw new ArithmeticException("La racine carrée d'un nombre négatif n'est pas définie dans les réels");
+                }
+                values.push(Math.sqrt(innerValue)); // Appliquer √ (racine carrée)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction sin(
+            else if (i + 3 < tokens.length && expression.substring(i, i + 4).equals("sin(")) {
+                int startIndex = i + 4; // Position après "sin("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                // Conversion de degrés en radians (si nécessaire)
+                double radians = Math.toRadians(innerValue);
+                double result = Math.sin(radians);
+
+                // Si la valeur est proche de zéro, la considérer comme zéro
+                if (Math.abs(result) < TOLERANCE) {
+                    result = 0;
+                }
+
+                values.push(result); // Appliquer cos (cosinus en radians)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction cos(
+            else if (i + 3 < tokens.length && expression.substring(i, i + 4).equals("cos(")) {
+                int startIndex = i + 4; // Position après "cos("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                // Conversion de degrés en radians (si nécessaire)
+                double radians = Math.toRadians(innerValue);
+                double result = Math.cos(radians);
+
+
+                // Si la valeur est proche de zéro, la considérer comme zéro
+                if (Math.abs(result) < TOLERANCE) {
+                    result = 0;
+                }
+
+                values.push(result); // Appliquer cos (cosinus en radians)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
+            // Si le token est une fonction tan(
+            if (i + 3 < tokens.length && expression.substring(i, i + 4).equals("tan(")) {
+                int startIndex = i + 4; // Position après "tan("
+                int endIndex = findClosingParenthesis(expression, startIndex);
+                String innerExpression = expression.substring(startIndex, endIndex);
+                double innerValue = evaluate(innerExpression); // Évaluer le contenu entre parenthèses
+                // Conversion de degrés en radians (si nécessaire)
+                double radians = Math.toRadians(innerValue);
+                double result = Math.tan(radians);
+                // Si la valeur est trop petite (approche zéro), la considérer comme zéro
+                if (Math.abs(result) < TOLERANCE) {
+                    result = 0;
+                }// Si le résultat est trop proche de 1 ou -1, arrondir
+                else if (Math.abs(result - 1) < TOLERANCE) {
+                    result = 1;
+                } else if (Math.abs(result + 1) < TOLERANCE) {
+                    result = -1;
+                }
+
+                values.push(result); // Appliquer tan (tangente en radians)
+                i = endIndex; // Mettre à jour l'indice pour continuer après ')'
+            }
+
             // Si le token est un chiffre ou un point
-            if (Character.isDigit(token) || token == '.') {
+            else if (Character.isDigit(token) || token == '.') {
                 StringBuilder buffer = new StringBuilder();
                 while (i < tokens.length && (Character.isDigit(tokens[i]) || tokens[i] == '.')) {
                     buffer.append(tokens[i++]);
@@ -93,5 +211,15 @@ public class ExpressionEvaluator {
 
     private boolean isOperator(char c) {
         return c == '+' || c == '-' || c == '×' || c == '/' || c == '^';
+    }
+
+    private int findClosingParenthesis(String expression, int startIndex) {
+        int count = 1;
+        for (int i = startIndex; i < expression.length(); i++) {
+            if (expression.charAt(i) == '(') count++;
+            else if (expression.charAt(i) == ')') count--;
+            if (count == 0) return i;
+        }
+        throw new IllegalArgumentException("Parenthesis mismatch");
     }
 }
