@@ -12,6 +12,8 @@
 
         <activity android:name=".ConversionActivity" />
 
+
+
         <activity android:name=".Calculator_Activity"
             android:exported="true"
             android:screenOrientation="unspecified"/>
