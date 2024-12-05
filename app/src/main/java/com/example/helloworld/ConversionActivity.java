@@ -171,17 +171,17 @@ public class ConversionActivity extends AppCompatActivity {
 
     // Unités pour les données
     private void setupDataByteUnits() {
-        addRadioButton(baseUnitRadioGroup, "Byte");
-        addRadioButton(baseUnitRadioGroup, "Kilobyte");
-        addRadioButton(baseUnitRadioGroup, "Megabyte");
-        addRadioButton(baseUnitRadioGroup, "Gigabyte");
-        addRadioButton(baseUnitRadioGroup, "Terabyte");
+        addRadioButton(baseUnitRadioGroup, "Octet");
+        addRadioButton(baseUnitRadioGroup, "Kilooctet");
+        addRadioButton(baseUnitRadioGroup, "Megaoctet");
+        addRadioButton(baseUnitRadioGroup, "Gigaoctet");
+        addRadioButton(baseUnitRadioGroup, "Teraoctet");
 
-        addRadioButton(targetUnitRadioGroup, "Byte");
-        addRadioButton(targetUnitRadioGroup, "Kilobyte");
-        addRadioButton(targetUnitRadioGroup, "Megabyte");
-        addRadioButton(targetUnitRadioGroup, "Gigabyte");
-        addRadioButton(targetUnitRadioGroup, "Terabyte");
+        addRadioButton(targetUnitRadioGroup, "Octet");
+        addRadioButton(targetUnitRadioGroup, "Kilooctet");
+        addRadioButton(targetUnitRadioGroup, "Megaoctet");
+        addRadioButton(targetUnitRadioGroup, "Gigaoctet");
+        addRadioButton(targetUnitRadioGroup, "Teraoctet");
     }
 
     // Méthode utilitaire pour ajouter un RadioButton à un RadioGroup
@@ -191,7 +191,7 @@ public class ConversionActivity extends AppCompatActivity {
         radioGroup.addView(radioButton);
     }
 
-    /// Étendre convertValue pour inclure les nouvelles catégories
+    // Étendre convertValue pour inclure les nouvelles catégories
     public void convertValue(View view) {
         String input = inputValue.getText().toString();
         if (!input.isEmpty()) {

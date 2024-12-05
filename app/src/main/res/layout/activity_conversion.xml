@@ -9,10 +9,12 @@
 
         <!-- Barre fixe -->
     <LinearLayout
-        android:layout_width="419dp"
-        android:layout_height="732dp"
+        android:layout_width="385dp"
+        android:layout_height="873dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <!-- Ligne avec texte et image -->
         <LinearLayout
@@ -56,15 +58,17 @@
             android:queryHint="Rechercher..." />
 
         <!-- RecyclerView pour la liste -->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCategories"
             android:layout_width="match_parent"
-            android:layout_height="490dp" />
+            android:layout_height="507dp" />
 
         <Button
             android:id="@+id/buttonToCalculator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:radius="999dp"
             android:text="Calculatrice" />
 
     </LinearLayout>

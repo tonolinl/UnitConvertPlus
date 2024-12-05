@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialisation du RecyclerView
         recyclerView = findViewById(R.id.recyclerViewCategories);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
 
         // Configuration initiale des catégories et unités
         setupCategoryUnitMap();
