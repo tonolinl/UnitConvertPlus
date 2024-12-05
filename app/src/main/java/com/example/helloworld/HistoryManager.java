@@ -1,7 +1,10 @@
 package com.example.helloworld;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,9 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class HistoryManager {
+public class HistoryManager extends AppCompatActivity {
     private static final String HISTORY_FILE_NAME = "history.json";
     private Context context;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_history);
+    }
 
     public HistoryManager(Context context) {
         this.context = context;
